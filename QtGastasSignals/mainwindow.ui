@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>698</width>
+    <height>587</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QtGastas</string>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>641</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabMov">
+     <attribute name="title">
+      <string>Movimientos</string>
+     </attribute>
+     <widget class="QTableView" name="tablaMov">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>621</width>
+        <height>221</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>223</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Selecionar Cuenta: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxCuentas"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="resetMov">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>330</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Reset/Actualizar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevoMov">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>330</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nuevo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarMov">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>330</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget1">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>280</y>
+        <width>181</width>
+        <height>33</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Total dinero:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="totalPasta">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="modificarMov">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>330</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modificar</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>240</y>
+        <width>108</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Filtrar Por Data:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="boxFiltroData">
+      <property name="geometry">
+       <rect>
+        <x>414</x>
+        <y>241</y>
+        <width>171</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Origen aplicación</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Último año</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Últimos tres meses</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Último mes</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QWidget" name="layoutWidget2">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>281</y>
+        <width>172</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="radioGastos">
+         <property name="text">
+          <string>Gastos</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QRadioButton" name="radioIngresos">
+         <property name="text">
+          <string>Ingresos</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Mov. Prog.</string>
+     </attribute>
+     <widget class="QTableView" name="tablaMovProg">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>621</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="modificarMov_3">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>290</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modificar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarMov_3">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>290</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevoMov_3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>290</y>
+        <width>141</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nuevo</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabCateg">
+     <attribute name="title">
+      <string> Cuentas</string>
+     </attribute>
+     <widget class="QTableView" name="tablaCuentas">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>291</width>
+        <height>351</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevaCuenta">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>150</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nueva</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarCuenta">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>90</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar Seleciconada</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>20</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="plainText">
+       <string>Para modificar la cuenta hacer doble click en la tabla izquerda.</string>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>210</y>
+        <width>251</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Seleccionar Cuenta</string>
+      </property>
+      <widget class="QPushButton" name="dineroGlobal">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>71</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TODAS</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="tabCuentasBox">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>60</y>
+         <width>121</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>201</width>
+         <height>33</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Total dinero:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="tabCuentasTotal">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Actualizar</string>
+       </property>
+      </widget>
+     </widget>
+     <zorder>groupBox</zorder>
+     <zorder>tablaCuentas</zorder>
+     <zorder>nuevaCuenta</zorder>
+     <zorder>borrarCuenta</zorder>
+     <zorder>plainTextEdit</zorder>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Categorias</string>
+     </attribute>
+     <widget class="QTableView" name="tablaCateg">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>331</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevaCategoria">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>20</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nueva</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarCateg">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>270</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="modificarCat">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>150</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modificar</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabCuentas">
+     <attribute name="title">
+      <string>SubCategorias</string>
+     </attribute>
+     <widget class="QTableView" name="tablaSub">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>321</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevaCategoria_3">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>20</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nueva</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="modificarCat_3">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>140</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modificar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarCateg_3">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>260</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>(Sub)SubCategorias</string>
+     </attribute>
+     <widget class="QTableView" name="tablaSubSub">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>311</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nuevaCategoria_4">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>20</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nueva</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="modificarCat_4">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>140</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modificar</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="borrarCateg_4">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>270</y>
+        <width>161</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="generatePdf">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>470</y>
+      <width>281</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Generar PDF Movimientos Actuales</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>698</width>
+     <height>29</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
