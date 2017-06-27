@@ -7,8 +7,9 @@ Aplicación para gestionar los ingresos y gastos de un usuario.
     $ cd repo
     $ mkdir build
     $ cd build
-    $ qmake ..
+    $ qmake PREFIX=/usr/local ..
     $ make
+    $ sudo make install
 
 ## Ejecutar
 

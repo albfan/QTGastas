@@ -10,7 +10,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = QtGastas
 TEMPLATE = app
-
+target.path = $${PREFIX}/bin
+INSTALLS = target
 
 SOURCES += src/main.cpp\
     src/mainwindow.cpp \
