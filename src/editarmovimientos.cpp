@@ -1,4 +1,4 @@
-﻿#include "editarmovimientos.h"
+#include "editarmovimientos.h"
 #include "ui_editarmovimientos.h"
 
 
