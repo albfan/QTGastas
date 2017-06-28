@@ -51,7 +51,7 @@ void MainWindow::SetConexiones()
             this, SLOT(actualizarInfoMov()));
 
     // Filtro de movimientos según la cuenta seleccionada
-    connect(ui->comboBoxCuentas, SIGNAL(currentTextChanged(QString)),
+    connect(ui->comboBoxCuentas, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(ComprobarFiltros()));
 
     // Filtro de movimientos según el tipo seleccionado
@@ -63,7 +63,7 @@ void MainWindow::SetConexiones()
             this, SLOT(ComprobarFiltros()));
 
     //Filtro de movimientos segun el filtro de data seleccionado
-    connect(ui->boxFiltroData, SIGNAL(currentTextChanged(QString)),
+    connect(ui->boxFiltroData, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(ComprobarFiltros()));
 
     ////////////////////////////////////////////////////////
