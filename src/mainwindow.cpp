@@ -51,7 +51,7 @@ void MainWindow::SetConexiones()
             this, SLOT(actualizarInfoMov()));
 
     // Filtro de movimientos según la cuenta seleccionada
-    connect(ui->comboBoxCuentas, SIGNAL(currentTextChanged(QString)),
+    connect(ui->comboBoxCuentas, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(ComprobarFiltros()));
 
     // Filtro de movimientos según el tipo seleccionado
@@ -63,7 +63,7 @@ void MainWindow::SetConexiones()
             this, SLOT(ComprobarFiltros()));
 
     //Filtro de movimientos segun el filtro de data seleccionado
-    connect(ui->boxFiltroData, SIGNAL(currentTextChanged(QString)),
+    connect(ui->boxFiltroData, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(ComprobarFiltros()));
 
     ////////////////////////////////////////////////////////
@@ -344,15 +344,15 @@ void MainWindow::ComprobarFiltros()
                 int y = now.year();//año
                 QString year = QString::number(y);
 
-                if(tiempo == "Origen aplicación")
+                if(tiempo == QString::fromUtf8("Origen aplicación"))
                     filtroTiempo = "fecha like '%'" ;
-                else if(tiempo == "Último año")
+                else if(tiempo == QString::fromUtf8("Último año"))
                     filtroTiempo = "fecha like '__/__/"+year+"%'";
-                else if(tiempo == "Últimos tres meses")
+                else if(tiempo == QString::fromUtf8("Últimos tres meses"))
                     filtroTiempo = "fecha like '__/" + mesActual + "/" + year + "%'"
                                                " or fecha like '__/"+ mesAnt + "/" + year + "%'"
                                                " or fecha like '__/" + mesAntAnt + "/" + year + "%'";
-                else if(tiempo == "Último mes")
+                else if(tiempo == QString::fromUtf8("Último mes"))
                     filtroTiempo = "fecha like '__/" + mesActual +"/" + year + "%'";
 
     }
@@ -454,7 +454,7 @@ void MainWindow::ComprobarFiltros()
         total = q.value(0).toDouble();
     }
 
-    ui->totalPasta->setText(QString::number(total)+"€");
+    ui->totalPasta->setText(QString::number(total)+QString::fromUtf8("€"));
 
 
 }
@@ -661,7 +661,7 @@ void MainWindow::actualizarDineroTotalCuenta(QString filtro)
         total = q.value(0).toDouble();
     }
 
-    ui->tabCuentasTotal->setText(QString::number(total)+"€");
+    ui->tabCuentasTotal->setText(QString::number(total)+QString::fromUtf8("€"));
 
 
 }
@@ -682,7 +682,7 @@ void MainWindow::on_dineroGlobal_clicked()
         total = q.value(0).toDouble();
     }
 
-    ui->tabCuentasTotal->setText(QString::number(total)+"€");
+    ui->tabCuentasTotal->setText(QString::number(total)+QString::fromUtf8("€"));
 
 }
 ////////////////////////////////////////////////////////////////////////////
@@ -822,7 +822,7 @@ void MainWindow::ComprobarPeriocidad()
 
                 yProg = QString::number(date.year());//se coje el año actual
 
-                if(periocidad == "Cada mes"){
+                if(periocidad == QString::fromUtf8("Cada mes")){
                       //si el dia y el mes actual coinciden con el programado
                       if(diaEnteroActual == diaEnteroProg && mesEnteroActual == mesEnteroProg){
                             mesEnteroProg = mesEnteroProg + 1;//siguiente programacion
@@ -831,7 +831,7 @@ void MainWindow::ComprobarPeriocidad()
                             insertado = 1;
                       }
 
-                }else if(periocidad == "Cada dos meses"){
+                }else if(periocidad == QString::fromUtf8("Cada dos meses")){
                     //si el dia y el mes actual coinciden con el programado
                     if(diaEnteroActual == diaEnteroProg && mesEnteroActual == mesEnteroProg){
                           mesEnteroProg = mesEnteroProg + 2;//siguiente programacion
@@ -842,7 +842,7 @@ void MainWindow::ComprobarPeriocidad()
                           insertado = 1;
                     }
 
-                }else  if(periocidad == "Cada año"){
+                }else  if(periocidad == QString::fromUtf8("Cada año")){
                     //si el dia y el mes y el año coinciden con el programado
                     if(diaEnteroActual == diaEnteroProg && mesEnteroActual == mesEnteroProg
                             && year == yProg ){

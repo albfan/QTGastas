@@ -64,7 +64,7 @@ void QConsultor::NuevoMovimiento(QString nombreCuenta, QString tipoMov, QString 
     }
 
     //comprobar que no nos emos pasado con los gastos (limite) en este dia
-   if(tipoMov == "gasto"){
+   if(tipoMov == QString::fromUtf8("gasto")){
 
        QDate now = QDate::currentDate();
        int dia, mes, ano, limite;
