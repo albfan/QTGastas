@@ -59,7 +59,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Selecionar Cuenta: </string>
+          <string>Seleccionar Cuenta: </string>
          </property>
         </widget>
        </item>
@@ -168,7 +168,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Filtrar Por Data:</string>
+       <string>Filtrar Por Fecha:</string>
       </property>
      </widget>
      <widget class="QComboBox" name="boxFiltroData">
@@ -334,7 +334,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Eliminar Seleciconada</string>
+       <string>Eliminar Seleccionada</string>
       </property>
      </widget>
      <widget class="QPlainTextEdit" name="plainTextEdit">
