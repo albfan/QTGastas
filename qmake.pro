@@ -1,10 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-05-23T11:42:19
-#
-#-------------------------------------------------
-
-QT       += core gui sql printsupport
+QT += core gui sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
