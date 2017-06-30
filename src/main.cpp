@@ -6,9 +6,8 @@ int main(int argc, char *argv[])
 {
 
     QApplication app(argc, argv);
-    //QCoreApplication app(argc, argv);
-    //QCoreApplication::setApplicationName("QtGastas");
-    //QCoreApplication::setApplicationVersion("1.0.0");
+    QApplication::setApplicationName("QtGastas");
+    QApplication::setApplicationVersion("1.0.0");
 
     QCommandLineParser parser;
     parser.setApplicationDescription(QCoreApplication::translate("main", "Control de ingresos y gastos"));
@@ -17,6 +16,8 @@ int main(int argc, char *argv[])
 
     QCommandLineOption demoOption(QStringList() << "d" << "demo", QCoreApplication::translate("main", "Añadir datos de prueba."));
     parser.addOption(demoOption);
+    QCommandLineOption importOption(QStringList() << "i" << "import", QCoreApplication::translate("main", "Importar datos masivamente."), QCoreApplication::translate("main", "filename"));
+    parser.addOption(importOption);
 
     parser.process(app);
    
@@ -25,6 +26,12 @@ int main(int argc, char *argv[])
 
     if(!createConnection(parser.isSet(demoOption)))
         return 1;
+
+    if(parser.isSet(importOption)) {
+        if(!importarDatos(parser.value(importOption))) {
+            return 1;
+        }
+    }
 
     MainWindow w;
     w.show();
