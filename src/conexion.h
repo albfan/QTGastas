@@ -83,6 +83,100 @@ static void insertarDatosPrueba() {
     query.exec("INSERT INTO movimientos VALUES(30,3,'ingreso',4,523.32,'venta coche','13/03/2015 21:26:12',NULL,NULL);");
 }
 
+static bool importarDatos(QString fileName) {
+    QFile loadFile(fileName);
+    int cuentaId;
+    int categId;
+
+    if(loadFile.exists() && loadFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray saveData = loadFile.readAll();
+        QJsonDocument jsonDoc(QJsonDocument::fromJson(saveData));
+
+        QJsonObject transactionJson = jsonDoc.object();
+        QString iban = transactionJson["account"].toObject()["iban"].toString();
+        QString description = transactionJson["account"].toObject()["description"].toString();
+
+        //TODO: Obtener de account
+        QString balance("0");
+
+        QSqlDatabase::database().transaction();
+
+        QSqlQuery query;
+
+        query.prepare("SELECT idCuenta FROM cuentas WHERE iban = :iban");
+        query.bindValue(":iban",iban);
+        query.exec();
+        cuentaId = 0;
+        if(query.next()){
+            cuentaId = query.value(0).toInt();
+        } else {
+            if(!query.exec("INSERT INTO cuentas(nombreCuenta, iban, limite, ingresoInicial) VALUES('"
+                                    + description + "', '" + iban + "',600, " + balance + ");")) {
+                qDebug() << query.lastError().text() << endl;
+            } else {
+                cuentaId = query.lastInsertId().toInt();
+            }
+        }
+
+        if (cuentaId == 0) {
+            qDebug() << "error creando cuenta con iban "+iban << endl;
+            return false;
+        }
+
+        categId = 0;
+        QString categoriaDesc = "importación";
+
+        query.prepare("SELECT categId FROM categorias WHERE nombreCateg = :descripcion");
+        query.bindValue(":descripcion", categoriaDesc);
+        query.exec();
+        if(query.next()){
+            categId = query.value(0).toInt();
+        } else {
+            query.prepare("INSERT INTO categorias(idCategPadre, nivel, nombreCateg) VALUES(0,0,:categoriaDesc);");
+            query.bindValue(":categoriaDesc", categoriaDesc);
+            if(!query.exec()) {
+                qDebug() << query.lastError().text() << endl;
+            } else {
+                categId = query.lastInsertId().toInt();
+            }
+        }
+
+        if (categId == 0) {
+            qDebug() << "error creando categoría "+categoriaDesc << endl;
+            return false;
+        }
+
+        QJsonArray transactionArray = transactionJson["transactions"].toArray();
+        for (int transactionIndex = 0; transactionIndex < transactionArray.size(); ++transactionIndex) {
+            QJsonObject transactionObject = transactionArray[transactionIndex].toObject();
+            QString date = transactionObject["date"].toString();
+            QString description = transactionObject["description"].toString();
+            QString amount = transactionObject["amount"].toObject()["fractional"].toString();
+            amount.remove(amount.length() - 2, 2);
+            amount.insert(amount.length() - 2, ".");
+            query.prepare("INSERT INTO movimientos (cuentaId,tipoMov,categId,importe,descripcion,data) VALUES(:cuentaId,:tipoMov,:categId,:importe,:desc,:fecha)");
+
+            QString tipoMov(amount.startsWith("-")? "gasto": "ingreso");
+            query.bindValue(":cuentaId", cuentaId);
+            query.bindValue(":tipoMov", tipoMov);
+            query.bindValue(":categId", categId);
+            query.bindValue(":importe", amount);
+            query.bindValue(":desc", description);
+            query.bindValue(":fecha", date + " 12:00:00");
+            if (!query.exec()) {
+                qDebug() << query.lastError().text() << endl;
+                return false;
+            }
+        }
+
+        QSqlDatabase::database().commit();
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
 static bool createConnection(bool demo)
 {
 
@@ -112,7 +206,7 @@ static bool createConnection(bool demo)
     query.exec("CREATE TABLE categorias(idCateg INTEGER PRIMARY KEY,idCategPadre INTEGER,nivel INT,nombreCateg TEXT);");
 
     //SE CREA LA TABLA DE CUENTAS
-    query.exec("CREATE TABLE cuentas(idCuenta INTEGER PRIMARY KEY,nombreCuenta TEXT,limite REAL,ingresoInicial REAL);");
+    query.exec("CREATE TABLE cuentas(idCuenta INTEGER PRIMARY KEY,nombreCuenta TEXT, iban TEXT, limite REAL,ingresoInicial REAL);");
 
     //CREA LA TABLA DE MOVIMIENTOS
     query.exec("CREATE TABLE movimientos(idMov INTEGER,cuentaId INTEGER,tipoMov TEXT,"
