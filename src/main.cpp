@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
 
     QApplication app(argc, argv);
-    QApplication::setApplicationName("QtGastas");
+    QApplication::setApplicationName("qtcash");
     QApplication::setApplicationVersion("1.0.0");
 
     QCommandLineParser parser;

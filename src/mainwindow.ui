@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QtGastas</string>
+   <string>qtcash</string>
   </property>
   <property name="inputMethodHints">
    <set>Qt::ImhNone</set>

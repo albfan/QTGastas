@@ -1,4 +1,4 @@
-# QTGastas
+# qtcash
 
 Aplicación para gestionar los ingresos y gastos de un usuario.
 
@@ -15,11 +15,11 @@ requiere Qt5
 
 ## Ejecutar
 
-    $ QtGastas
+    $ qtcash
 
 ## Opciones
 
-    $ QtGastas --help
+    $ qtcash --help
 
 - demo: Se creará una base de datos de prueba. Los pdf se crearán en el directorio de ejecución.
 
