@@ -57,8 +57,8 @@ void QConsultor::NuevoMovimiento(QString nombreCuenta, QString tipoMov, QString 
     query.prepare("SELECT idCuenta FROM cuentas WHERE nombreCuenta = :nCuenta");
     query.bindValue(":nCuenta",nombreCuenta);
     query.exec();
-    int cuentaId;
-    while(query.next()){
+    int cuentaId = 0;
+    if(query.next()){
         cuentaId = query.value(0).toInt();
     }
 
@@ -66,8 +66,8 @@ void QConsultor::NuevoMovimiento(QString nombreCuenta, QString tipoMov, QString 
    if(tipoMov == QString::fromUtf8("gasto")){
 
        QDate now = QDate::currentDate();
-       int dia, mes, ano, limite;
-       double totalGastado;
+       int dia, mes, ano, limite = 0;
+       double totalGastado = 0;
        QString diaQ, mesQ, anoQ;
 
        dia = now.day();
@@ -118,7 +118,7 @@ void QConsultor::NuevoMovimiento(QString nombreCuenta, QString tipoMov, QString 
        else
            qDebug() << query.lastQuery() << endl;
 
-       while (query.next()) {
+       if (query.next()) {
           limite = query.value(0).toInt();
 
        }
@@ -147,8 +147,8 @@ void QConsultor::NuevoMovimiento(QString nombreCuenta, QString tipoMov, QString 
         query.prepare("SELECT idCateg FROM categorias WHERE nombreCateg = :nCategoria");
         query.bindValue(":nCategoria",nombreCategoria);
         query.exec();
-        int categoria;
-        while(query.next()){
+        int categoria = 0;
+        if(query.next()){
             categoria = query.value(0).toInt();
         }
 
@@ -294,7 +294,7 @@ void QConsultor::NuevaSubcategoria(QString nombreSub, QString padre)
     //consulta
     QSqlQuery query;
 
-    int idCategoriaPadre;
+    int idCategoriaPadre = 0;
 
     query.prepare("SELECT idCateg FROM categorias WHERE nombreCateg = :p");
 
@@ -345,7 +345,7 @@ void QConsultor::NuevaSubSubcategoria(QString nombreSub, QString padre)
     //consulta
     QSqlQuery query;
 
-    int idCategoriaPadre;
+    int idCategoriaPadre = 0;
 
     query.prepare("SELECT idCateg FROM categorias WHERE nombreCateg = :p");
 
