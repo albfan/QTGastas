@@ -16,14 +16,14 @@ class QConsultor : public QWidget
     Q_OBJECT
 
 public:
-    explicit QConsultor(QWidget *parent = 0);
+    explicit QConsultor(QString dbFilePath, QWidget *parent = 0);
     ~QConsultor();
 
     // Base de datos
     QSqlDatabase db;
 
-    bool AbrirDB();         // Abrir Base de datos
-    void CerrarDB();        // Cerrar Base de datos
+    bool AbrirDB(); // Abrir Base de datos
+    void CerrarDB(); // Cerrar Base de datos
 
     void NuevoMovimiento(QString nombreCuenta, QString tipoMov,
                          QString nombreCategoria, QString importe,
@@ -44,6 +44,8 @@ signals:
 
 private:
     Ui::QConsultor *ui;
+    QString dbFilePath;
+    QString dbName;
 };
 
 #endif // QCONSULTOR_H

@@ -2,9 +2,11 @@
 #include "ui_qconsultor.h"
 #include <cmath>
 
-QConsultor::QConsultor(QWidget *parent) :
+QConsultor::QConsultor(QString dbFilePath, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::QConsultor)
+    ui(new Ui::QConsultor),
+    dbFilePath (dbFilePath)
+
 {
     ui->setupUi(this);
 }
@@ -20,16 +22,13 @@ bool QConsultor::AbrirDB()
     bool state;
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("baseDatos.sqlite");
+    db.setDatabaseName(dbFilePath);
 
     // Abrimos la base de datos.
-    if (!db.open())
-    {
+    if (!db.open()) {
         qDebug() << "Error de conexión con " << db.databaseName();
         state = false;
-    }
-    else
-    {
+    } else {
         qDebug() << "Conexión establecida con " << db.databaseName();
         state = true;
     }

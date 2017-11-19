@@ -2,14 +2,13 @@
 #include "ui_mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QConsultor* consultor, QWidget *parent) :
     QMainWindow(parent),
+    consultor (consultor),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    // Creamos un objeto que realizará las conexiones a la base de datos.
-    consultor = new QConsultor();
     consultor->AbrirDB();
 
     //comprobarmos si hay que insertar algun movimiento programado anteriormente

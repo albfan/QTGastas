@@ -25,7 +25,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QConsultor* consultor, QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
